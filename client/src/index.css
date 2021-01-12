@@ -46,3 +46,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -25,6 +25,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
+// remove force when build
 db.sequelize.sync({ force: true }).then(function () {
   console.log("sequelize synced!");
   app.listen(PORT, () => {
