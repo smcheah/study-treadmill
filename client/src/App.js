@@ -1,14 +1,33 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import MainPage from "./pages/main";
+import StatsPage from "./pages/stats";
+import HomePage from "./pages/home";
+import LoginPage from "./pages/login";
+import NoMatch from "./pages/no-match"
 import './App.css';
 
-function App() {
-  return <div>
-    hello world
-    <div className="running-man">
+function App () {
+    return <Router>
+        <Switch>
+            <Route exact path="/login" >
+                <LoginPage />
+            </Route>
+            <Route exact path="/main" >
+                <MainPage />
+            </Route>
+            <Route exact path="/main/stats" >
+                <StatsPage />
+            </Route>
+            <Route exact path="/" >
+                <HomePage />
+            </Route>
+            <Route>
+                <NoMatch />
+            </Route>
+        </Switch>
+    </Router>
 
-    </div>
-  </div>
 }
 
 export default App;
