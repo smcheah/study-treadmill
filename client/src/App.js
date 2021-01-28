@@ -4,6 +4,7 @@ import MainPage from "./pages/main";
 import StatsPage from "./pages/stats";
 import HomePage from "./pages/home";
 import LoginPage from "./pages/login";
+import SignUpPage from "./pages/signup"
 import NoMatch from "./pages/no-match"
 import './App.css';
 
@@ -12,6 +13,9 @@ function App () {
         <Switch>
             <Route exact path="/login" >
                 <LoginPage />
+            </Route>
+            <Route exact path="/signup" >
+                <SignUpPage />
             </Route>
             <Route exact path="/main" >
                 <MainPage />
