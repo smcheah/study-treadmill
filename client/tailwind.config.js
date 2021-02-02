@@ -7,13 +7,20 @@ module.exports = {
     theme: {
         extend: {
             gridTemplateRows: {
-                timeline: '80% 20%',
-            }
+                "main": '10% 600px auto',
+            },
+            gridTemplateColumns: {
+                "main": 'auto 500px auto'
+            },
+            width: {
+                '90': '23rem'
+            },
         },
         height: {
             'screen-half': "50vh",
             'screen-3/4': "75vh",
-        }
+        },
+
     },
     darkMode: 'media',
     variants: {

@@ -7,18 +7,18 @@ const API = {
     signUpUser: function (data) {
         return axios.post("http://localhost:3001/api/signup", data);
     },
-    getUser: function (id) {
-        return axios.get("http://localhost:3001/api/users/" + id);
+    getUser: function (data) {
+        return axios.get("http://localhost:3001/api/user", data);
     },
     deleteUser: function (id) {
-        return axios.delete("http://localhost:3001/api/users/" + id);
+        return axios.delete("http://localhost:3001/api/user/" + id);
     },
 
-    postTask: function () {
-        return axios.post("http://localhost:3001/api/tasks");
+    postTask: function (data) {
+        return axios.post("http://localhost:3001/api/tasks", data);
     },
-    getTask: function (id) {
-        return axios.get("http://localhost:3001/api/tasks/" + id);
+    getTasks: function (data) {
+        return axios.get("http://localhost:3001/api/tasks/", data);
     },
     deleteTask: function (id) {
         return axios.delete("http://localhost:3001/api/tasks/" + id);

@@ -12,9 +12,34 @@ router.get("/login", function (req, res) {
     db.User.findAll().then(data => {
         res.json(data);
     });
-
+});
+router.get("/user", function (req, res) {
+    db.User.findAll().then(data => {
+        res.json(data);
+    });
+});
+router.get("/tasks", function (req, res) {
+    db.Task.findAll().then(data => {
+        res.json(data);
+    });
 });
 
+router.post("/tasks", async (req, res) => {
+    console.log("hi");
+    const { title, body, reward, date, time } = req.body;
+    try {
+        console.log("post task in api route:" + req.body);
+        //, UserId
+
+        const task = await db.Task.create({
+            title, body, reward, date, time
+        });
+        return res.json(task);
+    } catch (err) {
+        console.log(err);
+        res.status(401).json(err);
+    }
+});
 router.post("/login", passport.authenticate("local"), (req, res) => {
     res.json(req.user);
 });
