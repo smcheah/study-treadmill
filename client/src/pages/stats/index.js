@@ -1,5 +1,13 @@
 import React from "react";
 
+/**
+ * write up layout for stats page
+ *
+ * add functionality to stats
+ * - get username
+ * - task stats and rewards over time
+ */
+
 const StatsPage = () => {
     return <div>
         <div>
