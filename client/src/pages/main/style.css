@@ -1,0 +1,24 @@
+@layer components {
+	.btn-main {
+		@apply z-0 py-2 px-4 text-white font-semibold rounded-2xl shadow-md focus:outline-none;
+	}
+	.testing {
+		@apply bg-yellow-400 hover:bg-yellow-500;
+	}
+}
+
+#line {
+	position: absolute;
+	z-index: 1;
+	height: 2px;
+	width: 100%;
+	background-color: gray;
+}
+
+#guy-bg {
+	clip-path: polygon(30% 66%, 100% 38%, 100% 100%, 0% 100%);
+	background-color: rgb(41, 204, 144);
+	width: 480px;
+    height: 280px;
+    position: relative;
+}
