@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const cors = require('cors');
 const passport = require("./config/passport");
+const isAuthenticated = require("./config/middleware/isAuthenticated")
 const path = require("path");
 
 let db = require("./models");
@@ -32,15 +33,21 @@ app.use(passport.session());
 
 // Define API routes here
 app.use("/api", require("./controllers/api-routes"));
+// app.use(require("./controllers/html-routes"))
 
 // Send every other request to the React app
-// require("./controllers/html-routes.js")(app);
 // Define any API routes before this runs
 
 // this serves the single page react app (SPA) in production 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
+// app.get("/main", isAuthenticated, function (req, res) {
+//     res.render("main");
+// });
+// app.get("/main/stats", isAuthenticated, function (req, res) {
+//     res.render("stats");
+// });
 
 // remove force when build { force: true }
 db.sequelize.sync().then(function () {
