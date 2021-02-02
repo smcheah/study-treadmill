@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import UserContext from "../../util/user-context";
 import API from "../../util/API";
-import axios from "axios";
 
 const SignUpPage = () => {
     const [userSignUp, setUserSignUp] = useState({
@@ -22,7 +22,6 @@ const SignUpPage = () => {
                 username: userSignUp.username.trim(),
                 password: userSignUp.password.trim()
             };
-            console.log(window.location);
 
             API.signUpUser({
                 username: userData.username,
@@ -38,7 +37,7 @@ const SignUpPage = () => {
         console.error("error!", err);
     }
 
-    return <>
+    return <UserContext.Provider value={ userSignUp.username }>
         <div className="flex flex-col min-h-screen items-center justify-center">
             <input className="text-5xl md:text-8xl text-center focus:outline-none text-white bg-gray-400 placeholder-white max-w-6xl w-9/12 m-3"
                 name="username"
@@ -63,7 +62,7 @@ const SignUpPage = () => {
             </div>
 
         </div>
-    </>;
+    </UserContext.Provider>;
 };
 
 export default SignUpPage;

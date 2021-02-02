@@ -96,7 +96,7 @@ const HomePage = () => {
         <footer className="flex flex-wrap justify-center p-3">
             <p className="p-1">Simone Cheah &copy; 2021</p>
             <a className="p-1 underline hover:text-yellow-400" href="https://github.com/smcheah">github</a>
-            <a className="p-1 underline hover:text-yellow-400" href="#">linkedIn</a>
+            <a className="p-1 underline hover:text-yellow-400" href="https://www.linkedin.com/in/simone-cheah-13607215b/">linkedIn</a>
         </footer>
 
     </div>;
