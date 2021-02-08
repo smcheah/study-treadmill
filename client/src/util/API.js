@@ -2,26 +2,26 @@ import axios from "axios";
 
 const API = {
     loginUser: function (data) {
-        return axios.post("http://localhost:3001/api/login", data);
+        return axios.post("http://localhost:4000/api/login", data);
     },
     signUpUser: function (data) {
-        return axios.post("http://localhost:3001/api/signup", data);
+        return axios.post("http://localhost:4000/api/signup", data);
     },
-    getUser: function (data) {
-        return axios.get("http://localhost:3001/api/user", data);
+    getUser: function (id) {
+        return axios.get("http://localhost:4000/api/user/" + id);
     },
     deleteUser: function (id) {
-        return axios.delete("http://localhost:3001/api/user/" + id);
+        return axios.delete("http://localhost:4000/api/user/" + id);
     },
 
-    postTask: function (data) {
-        return axios.post("http://localhost:3001/api/tasks", data);
+    postTask: function (user, data) {
+        return axios.post("http://localhost:4000/api/tasks/" + user, data);
     },
-    getTasks: function (data) {
-        return axios.get("http://localhost:3001/api/tasks/", data);
+    getTasks: function (user, data) {
+        return axios.get("http://localhost:4000/api/tasks/" + user, data);
     },
-    deleteTask: function (id) {
-        return axios.delete("http://localhost:3001/api/tasks/" + id);
+    deleteTask: function (user, id) {
+        return axios.delete("http://localhost:4000/api/tasks/" + user + id);
     },
 };
 
