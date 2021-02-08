@@ -9,12 +9,6 @@ const LoginPage = () => {
         password: ""
     });
     const [error, setError] = useState("");
-    const { user } = useContext(UserContext);
-    const { setUser } = useContext(UserContext);
-
-    useEffect(() => {
-        setUser("Login User");
-    }, [setUser]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -23,7 +17,7 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("login page:", user);
+
         if (userLogin.username && userLogin.password) {
             console.log("submit form:", userLogin);
 

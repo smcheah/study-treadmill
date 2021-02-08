@@ -11,12 +11,11 @@ import "./style.css";
 
 /**
  *
- * see the username in header
  *
  * add functionality to creating and deleting a new task
  * and reward
  *
- * add the tasks to teh user
+ * add the tasks to the user
  *
  * create timeline functionality
  * auto scroll as time goes on
@@ -34,8 +33,7 @@ const MainPage = () => {
     useEffect(() => {
         setUserId(id);
         getUsername(id);
-        console.log(id);
-    })
+    }, [id])
 
     const showModal = (e) => {
         e.preventDefault();
@@ -50,7 +48,7 @@ const MainPage = () => {
             setUser(data.username);
         });
     };
-
+    
 
     // const getTimeLineData = () => {
     //     API.getTasks().then(data => {
