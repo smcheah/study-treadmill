@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link, useLocation, useParams } from "react-router-dom";
 import Guy from "../../components/guy";
 import Timer from "../../components/timer";
 import Modal from "../../components/modal";
@@ -25,11 +25,17 @@ import "./style.css";
  */
 
 const MainPage = () => {
-
     const [modal, setModal] = useState(false);
     const [user, setUser] = useState("User");
     const [userId, setUserId] = useState("");
     const [timelineData, setTimelineData] = useState([]);
+    const { id } = useParams();
+
+    useEffect(() => {
+        setUserId(id);
+        getUsername(id);
+        console.log(id);
+    })
 
     const showModal = (e) => {
         e.preventDefault();
@@ -39,27 +45,23 @@ const MainPage = () => {
         e.preventDefault();
         setModal(false);
     };
-
-    const getUsername = () => {
-        API.getUser().then(data => {
-            // console.log(data);
-            setUserId(data.data[0].id);
-            setUser(data.data[0].username);
+    const getUsername = (id) => {
+        API.getUser(id).then(({ data }) => {
+            setUser(data.username);
         });
     };
-    getUsername();
 
-    const getTimeLineData = () => {
-        API.getTasks().then(data => {
-            console.log(data.data);
-            // if (data.data) {
-            //     setTimelineData(data.data);
-            // }
-        });
-    };
-    getTimeLineData();
 
-    // const { user } = useContext(UserContext);
+    // const getTimeLineData = () => {
+    //     API.getTasks().then(data => {
+    //         console.log(data.data);
+    //         // if (data.data) {
+    //         //     setTimelineData(data.data);
+    //         // }
+    //     });
+    // };
+    // getTimeLineData();
+
     return <div className="main grid grid-cols-main grid-rows-main min-h-full w-full">
 
         <div className="z-40 fixed">
@@ -85,7 +87,7 @@ const MainPage = () => {
                 <span>time</span>
                 <p>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                </p> 
+                </p>
             </div>
         </section>
 
@@ -107,7 +109,7 @@ const MainPage = () => {
                 className="absolute right-0 btn-main bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-400">
                 friend alert
                 </button> */}
-            <Link to="/main/stats"
+            <Link to={ `/main/stats/${id}` }
                 className="absolute top-16 right-0">
                 <button
                     className="btn-main bg-blue-400 hover:bg-blue-500 focus:ring-blue-400">

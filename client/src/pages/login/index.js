@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link, useParams } from "react-router-dom";
 import UserContext from "../../util/user-context";
 import API from "../../util/API";
 
@@ -18,26 +19,21 @@ const LoginPage = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setUserLogin({ ...userLogin, [name]: value });
-
-
-        console.log(user);
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("login page:", user);
         if (userLogin.username && userLogin.password) {
             console.log("submit form:", userLogin);
-            const userData = {
-                username: userLogin.username.trim(),
-                password: userLogin.password.trim()
-            };
 
             API.loginUser({
-                username: userData.username,
-                password: userData.password
-            }).then(() => {
+                username: userLogin.username.trim(),
+                password: userLogin.password.trim()
+            }).then(({ data }) => {
                 setError("NICE ONE");
-                window.location.replace("/main");
+                console.log(data);
+                window.location.replace(`/main/${data.id}`);
             }).catch(err => {
                 console.log("error!", err);
                 setError("INCORRECT USERNAME OR PASSWORD");
@@ -68,6 +64,7 @@ const LoginPage = () => {
                     value="login"
                     id="login-submit"
                     onClick={ handleSubmit }>SUBMIT</button>
+
             </div>
         </div>
     </>;
