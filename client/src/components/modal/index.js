@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import API from "../../util/API";
 import "./style.css";
 
 const Modal = ({ isShown, userId, closeModal }) => {
-    // post tasks to userdata
 
     const [task, setTask] = useState({
-        title: "",
+        title: "Task",
         body: "",
         reward: false,
         date: "",
@@ -14,8 +13,12 @@ const Modal = ({ isShown, userId, closeModal }) => {
         UserId: ""
     });
 
+    useEffect(() => {
+        setTask({ UserId: userId });
+    }, [task.UserId])
+
     let toggleChecked;
-    task.reward ? toggleChecked = "text-gray-300" : toggleChecked = "text-yellow-200";
+    task.reward ? toggleChecked = "text-yellow-200" : toggleChecked = "text-gray-300";
     let toggleModal;
     isShown ? toggleModal = "fixed block" : toggleModal = "fixed hidden";
 
@@ -24,9 +27,6 @@ const Modal = ({ isShown, userId, closeModal }) => {
     };
 
     const postTaskData = (e) => {
-        console.log("post task data to api");
-        setTask({ ...task, UserId: userId });
-
         console.log(task);
 
         API.postTask({
@@ -34,9 +34,10 @@ const Modal = ({ isShown, userId, closeModal }) => {
             body: task.body,
             reward: task.reward,
             date: task.date,
-            time: task.time
+            time: task.time,
+            UserId: userId
         }).then(data => {
-            // console.log(data);
+            console.log(data);
         }).catch(err => {
             console.log(err);
         });

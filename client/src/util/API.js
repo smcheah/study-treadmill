@@ -14,8 +14,8 @@ const API = {
         return axios.delete("http://localhost:4000/api/user/" + id);
     },
 
-    postTask: function (user, data) {
-        return axios.post("http://localhost:4000/api/tasks/" + user, data);
+    postTask: function (data) {
+        return axios.post("http://localhost:4000/api/tasks/", data);
     },
     getTasks: function (user, data) {
         return axios.get("http://localhost:4000/api/tasks/" + user, data);

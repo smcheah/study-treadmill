@@ -5,24 +5,33 @@ const passport = require("../config/passport");
 
 // task db
 router.get("/tasks/:userId", function (req, res) {
-    db.Task.findAll().then(data => {
+    db.Task.findAll({
+        where: { UserId: req.params.userId }
+    }).then(data => {
         res.json(data);
     });
 });
-router.delete("/tasks/:userId", function (req, res) {
-    db.Task.findAll().then(data => {
+router.delete("/tasks/:userId/:taskId", function (req, res) {
+    db.Task.findOne({
+        where: {
+            UserId: req.params.userId,
+            id: req.params.taskId
+        }
+    }).then(data => {
         res.json(data);
     });
-});
+}); //
 router.post("/tasks", async (req, res) => {
     console.log(req);
-    const { title, body, reward, date, time } = req.body;
+    const { title, body, reward, date, time, UserId } = req.body;
     try {
-        console.log("post task in api route:" + req.body);
-        //, UserId
-
         const task = await db.Task.create({
-            title, body, reward, date, time
+            title,
+            body,
+            reward,
+            date,
+            time,
+            UserId
         });
         return res.json(task);
     } catch (err) {
@@ -55,7 +64,7 @@ router.get("/logout", (req, res) => {
 });
 router.delete("/user/:id", (req, res) => {
 
-})
+});
 router.post("/login", passport.authenticate("local"), (req, res) => {
     res.json(req.user);
 });
