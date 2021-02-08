@@ -6,7 +6,7 @@ const isAuthenticated = require("./config/middleware/isAuthenticated")
 const path = require("path");
 
 let db = require("./models");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 const flash = require('connect-flash');
 const app = express();
 const routes = require("./controllers/api-routes");
@@ -30,7 +30,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // Define API routes here
 app.use("/api", require("./controllers/api-routes"));
 // app.use(require("./controllers/html-routes"))
@@ -42,12 +41,6 @@ app.use("/api", require("./controllers/api-routes"));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
-// app.get("/main", isAuthenticated, function (req, res) {
-//     res.render("main");
-// });
-// app.get("/main/stats", isAuthenticated, function (req, res) {
-//     res.render("stats");
-// });
 
 // remove force when build { force: true }
 db.sequelize.sync().then(function () {
